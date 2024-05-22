@@ -1,0 +1,11 @@
+<div class="p-3">
+  <%= form_with url: breweries_path, method: :get, data: { controller: "search", turbo_frame: "breweries" }, id: "brewery-search-form" do %>
+    <div class="mb-3">
+      <%= text_field_tag :query, params[:query], placeholder: "Search Breweries", class: "form-control", data: { action: "input->search#search", search_target: "input" } %>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "breweries" do %>
+    <%= render partial: 'breweries/breweries_partial', locals: { breweries: @breweries } %>
+  <% end %>
+</div>
